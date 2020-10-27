@@ -1,0 +1,26 @@
+type Coordinate {
+	x: Int!
+	y: Int!
+}
+
+type Asset {
+	id: ID!
+	createdAt: DateTime!
+	updatedAt: DateTime!
+	name: String!
+	width: Int!
+	height: Int!
+	source: URL!
+	focalPoint: Coordinate!
+}
+
+type OrderReview {
+	id: ID!
+	orderId: ID!
+	shopBranchId: ID!
+	"""
+	Entero del 1 al 5
+	"""
+	stars: Int!
+	comment: String
+}

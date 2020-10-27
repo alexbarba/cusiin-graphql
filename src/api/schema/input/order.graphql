@@ -1,0 +1,78 @@
+input Order {
+	"""
+	A unique code for the Order
+	"""
+	status: OrderStatus!
+	deliveryTime: Time
+
+	userId: ID!
+	shopBranchId: ID!
+	reviewId: ID
+
+	shippingMethod: ShippingMethod!
+	shippingAddress: UserAddress
+	deliveryManId: ID
+
+	lines: [OrderLine!]!
+	notes: String
+	subTotal: Money!
+	deliveryCost: Money
+	discount: Money
+	total: Money!
+	payment: [Payment]
+	adjustment: [AdjustmentType]
+}
+
+input OrderLine {
+	quantity: Int!
+	item: OrderItem!
+	notes: String
+	price: Money!
+	"""
+	Una linea de la orden puede llevar un ajuste como una promocion 2x1
+	"""
+	adjustment: [Adjustment]
+}
+
+input OrderItem {
+	name: String!
+	quantity: Int!
+	options: [OrderItemOptions]
+	notes: String
+	price: Money!
+	"""
+	Un item de una linea de orden puede llevar una promocion como un descuento
+	"""
+	adjustment: [Adjustment]
+}
+
+input OrderItemOptions {
+	name: String!
+	items: [OrderItemOptionsLine]
+}
+
+input OrderItemOptionsLine {
+	name: String!
+	"""
+	Este precio puede ser diferente al precio del item individual
+	"""
+	price: Money
+	"""
+	El numeral sirve para definir cual elemento se mostrara primero en la lista
+	"""
+	quantity: Int!
+}
+
+input Adjustment {
+	type: AdjustmentType!
+	description: String!
+	amount: Money!
+}
+
+input Payment implements Node {
+	method: PaymentMethod!
+	amount: Money!
+	paymentState: PaymentState!
+	errorMessage: String
+	metadata: JSON
+}

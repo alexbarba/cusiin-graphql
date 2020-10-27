@@ -1,0 +1,27 @@
+input DeliveryMan {
+	name: String!
+	phone: PhoneNumber!
+	location: Location
+	userReviews: [DeliveryReview]
+	shopReview: [DeliveryReview]
+}
+
+input DeliveryReview {
+	"""
+	false cuando la review proviene de un user, true cuando proviene de una shop
+	"""
+	type: Boolean!
+	orderId: ID!
+	created: DateTime!
+	"""
+	false cuando es pulgar abajo, true cuando es pulgar arriba
+	"""
+	thumb: Boolean!
+}
+
+input Location {
+	created: DateTime!
+	updated: DateTime!
+	x: Float!
+	y: Float!
+}

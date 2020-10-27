@@ -1,0 +1,28 @@
+type User {
+	"""
+	email cumple la funcion de id
+	"""
+	email: EmailAddress!
+	created: DateTime!
+	updated: DateTime!
+	name: String!
+	phone: PhoneNumber
+
+	adresses: [UserAddress]
+	activeAddress: ID!
+	favorites: [ShopBranch]
+	avatar: Asset
+}
+
+type UserAddress {
+	id: ID!
+	created: DateTime!
+	updated: DateTime!
+	name: String!
+	streetLine: String!
+	postalCode: PostalCode!
+	state: State!
+	city: City!
+	company: String
+	notes: String
+}

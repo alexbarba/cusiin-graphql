@@ -1,0 +1,22 @@
+input Coordinate {
+	x: Int!
+	y: Int!
+}
+
+input Asset {
+	name: String!
+	width: Int!
+	height: Int!
+	source: URL!
+	focalPoint: Coordinate
+}
+
+input OrderReview {
+	orderId: ID!
+	shopBranchId: ID!
+	"""
+	Entero del 1 al 5
+	"""
+	stars: Int!
+	comment: String
+}

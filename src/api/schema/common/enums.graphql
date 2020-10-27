@@ -1,0 +1,127 @@
+enum CountryCode {
+	MX
+}
+
+enum State {
+	Nayarit
+}
+
+enum City {
+	Acaponeta
+	Ahuacatlan
+	AmatlanDeCanas
+	Compostela
+	Huajicori
+	IxtlanDelRio
+	Jala
+	Xalisco
+	DelNayar
+	Rosamorada
+	Ruiz
+	SanBlas
+	SanPedroLagunillas
+	SantaMariaDelOro
+	SantiagoIxcuintla
+	Tecuala
+	Tepic
+	Tuxpan
+	LaYesca
+	BahiaDeBanderas
+}
+
+enum Category {
+	Pizza
+	Americana
+	Sushi
+	Alitas
+	Postres
+	Mexicana
+	Asiatica
+	Japonesa
+	Helado
+	Conveniencia
+	Saludable
+	China
+	Mariscos
+	Panaderia
+	Italiana
+	Cafeteria
+	Desayuno
+	Latina
+	Argentina
+	Bebidas
+	Vegetariana
+	Hawaiana
+	MedioOriente
+}
+
+enum OrderStatus {
+	AddingItems
+	ArrangingDetails
+	Request
+	ConfirmedByShop
+	Collecting
+	Incomming
+	Delivered
+	Cancelled
+}
+
+enum CurrencyCode {
+	MXN
+	USD
+}
+
+enum AdminPermission {
+	"""
+	Un vendedor puede atender pedidos, y operar sobre ellos, asi como agotar existencias
+	"""
+	SELLER
+
+	"""
+	Duenio de la tienda, edita perfiles y pleno poder sobre la tienda
+	"""
+	OWNER
+
+	"""
+	Un gerente o lider puede hacer cambios con respecto a la sucursal que opere
+	"""
+	MANAGER
+}
+
+enum AdjustmentType {
+	"""
+	Incrementan el monto de la orden
+	"""
+	EXTRA_INGREDIENT
+	SHIPPING
+	PROMOTION_REJECTED
+	ITEM_ADDED
+	"""
+	Reducen el monto de la orden
+	"""
+	REFUND
+	PROMOTION
+	SHIPPING_REFUND
+	ITEM_REMOVED
+	ITEM_MISSING
+	INCOMPLETE_ORDER
+}
+
+enum ShippingMethod {
+	SERVICE_REQUIRED
+	PICKUP
+	SELF_SERVICE
+}
+
+enum PaymentMethod {
+	CASH
+	CREDIT
+	DEBIT
+}
+
+enum PaymentStatus {
+	FillingData
+	Request
+	Aproved
+	Rejected
+}

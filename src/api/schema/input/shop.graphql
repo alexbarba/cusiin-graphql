@@ -1,0 +1,150 @@
+input Shop {
+	name: String!
+	alias: String!
+	description: String!
+	category: Category!
+
+	"""
+	La parte mas importante de la tienda son sus sucursales
+	"""
+	branches: [ShopBranch]!
+	"""
+	Las sucursales pueden compartir items, categorias, grupos modificadores e imagenes
+	"""
+	menus: [Menu]
+	items: [Item]
+	itemCategories: [ItemCategory]
+	modifiersGroups: [ModifierGroup]
+	assets: [Asset]
+}
+
+input ShopBranch {
+	"""
+	name cumple la funcion de id
+	"""
+	name: String!
+	shop: ID!
+	phone: [PhoneNumber]!
+	address: ShopAddress
+	administrators: [Administrator]
+	online: Boolean
+	menu: [ID]
+	activeOrders: [ID]
+	"""
+	ID de items agotados en la sucursal
+	"""
+	soldOutItems: [ID]
+	"""
+	Incluye la URL del logo
+	"""
+	logo: Asset
+	"""
+	Incluye la URL de la foto de portada
+	"""
+	cover: Asset
+	stars: NonNegativeFloat
+	currencies: [CurrencyCode]
+}
+
+input Item {
+	name: String!
+	price: Money!
+	enabled: Boolean!
+	asset: Asset
+	description: String
+	"""
+	Si el producto es vendible o solo sirve para grupos modificadores
+	"""
+	salable: Boolean!
+	"""
+	ID de ItemCategory
+	"""
+	category: ID
+	"""
+	Corresponde a un ID de un grupo modificador y su numeral
+	"""
+	modifierGroups: [ModifierGroup]
+}
+
+input ModifierGroup {
+	name: String!
+	description: String
+	items: [ModifierGroupLine]
+	required: Boolean!
+	maximumQuantityOfItems: Int
+	numeral: Int
+}
+
+input ModifierGroupLine {
+	"""
+	Este precio puede ser diferente al precio del item individual
+	"""
+	price: Money
+	"""
+	Cantidad maxima de items que pueden pedir en el grupo modificador
+	"""
+	maximumQuantity: Int!
+	"""
+	El numeral sirve para definir cual elemento se mostrara primero en la lista
+	"""
+	numeral: Int!
+}
+
+input Menu {
+	categories: [SortElement]
+	sortItems: [SortElement]
+	available: Boolean!
+	schedules: [Schedule]
+}
+
+input ShopAddress {
+	streetLine: String!
+	postalCode: PostalCode!
+	state: State!
+	city: City!
+	"""
+	Las notas sirven para facilitar al repartidor anadiendole instrucciones personalizadas
+	"""
+	notes: String
+}
+
+"""
+Ordena cualquier elemento para ser usado en la interfaz
+"""
+type SortElement {
+	element: ID!
+	"""
+	El numeral sirve para ordenar los elementos, donde el numero mas pequeno es primero. Los numerales no se repiten en un mismo array
+	"""
+	numeral: Int!
+}
+
+"""
+Es un tipo de item con grupo modificador pensado para usarse en grupos modificadores
+"""
+type ItemCategory {
+	id: ID!
+	name: String!
+	dad: ItemCategory
+}
+
+type Schedule {
+	startTime: Time!
+	endTime: Time!
+	sunday: boolean!
+	monday: boolean!
+	tuesday: boolean!
+	wednesday: boolean!
+	thursday: boolean!
+	friday: boolean!
+	saturday: boolean!
+}
+
+type Administrator {
+	"""
+	email cumple la funcion de id
+	"""
+	email: EmailAddress!
+	permissions: Permission!
+	fullname: String!
+}

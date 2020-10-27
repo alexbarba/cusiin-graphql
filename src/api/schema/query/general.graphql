@@ -1,0 +1,36 @@
+type Query {
+	"""
+	Devuelve todas las shops online
+	"""
+	getShopsOnline: [Shop]
+
+	"""
+	Devuelve toda la informacion de una shop
+	"""
+	getShop(id: ID!): Shop
+
+	"""
+	Devuelve un item
+	"""
+	getItem(id: ID!): Item
+
+	"""
+	Devuelve una orden
+	"""
+	getOrder(id: ID!): Order
+
+	"""
+	Recibe un id de usuario y devuelve todas sus ordenes
+	"""
+	getOrders(id: ID!): [Order]
+
+	"""
+	Devuelve un usuario
+	"""
+	getUser(id: ID!): User
+
+	"""
+	Ejecuta una busqueda global
+	"""
+	searchItems(keyword: String!): [GlobalSearch]
+}

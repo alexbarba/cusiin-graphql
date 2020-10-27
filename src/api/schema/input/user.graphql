@@ -1,0 +1,23 @@
+input User {
+	"""
+	email cumple la funcion de id
+	"""
+	email: EmailAddress!
+	name: String!
+	phone: PhoneNumber
+
+	adresses: [UserAddress]
+	activeAddress: ID
+	favorites: [ShopBranch]
+	avatar: Asset
+}
+
+type UserAddress {
+	name: String!
+	streetLine: String!
+	postalCode: PostalCode!
+	state: State!
+	city: City!
+	company: String
+	notes: String
+}

@@ -1,0 +1,12 @@
+"""graphql-iso-date"""
+
+"""Urigo/graphql-scalars"""
+scalar DateTime
+scalar Time
+scalar EmailAddress
+"""flotante no negativo renombrado como dinero"""
+scalar NonNegativeFloat
+scalar PhoneNumber
+scalar PostalCode
+scalar URL
+scalar JSON
